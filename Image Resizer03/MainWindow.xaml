@@ -1,0 +1,157 @@
+﻿<Window x:Class="Image_Resizer03.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"    
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+     
+        xmlns:local="clr-namespace:Image_Resizer03"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="300"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="none" 
+        ResizeMode="NoResize"
+        Background="Transparent"
+        FontFamily="helvitca"
+         FontWeight="light"
+        Foreground="#FFEAEAEA"
+        BorderThickness="0.25"
+        
+        AllowsTransparency="true"
+        >
+
+    <Grid>
+
+        <Grid.Resources>
+            <LinearGradientBrush x:Key="gradient"
+                                 StartPoint="1,0"
+                                 EndPoint="1,1">
+                <GradientStop Color="#FF26547A" Offset="0.019"/>
+                <GradientStop Color="#FFA91414" Offset="1.1"/>
+                <GradientStop Color="#FF4390BF" Offset="0.506"/>
+                <GradientStop Color="#FF46CECC" Offset="1"/>
+            </LinearGradientBrush>
+
+        </Grid.Resources>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="123*"/>
+                <RowDefinition Height="97*"/>
+                <RowDefinition Height="129.6"/>
+            </Grid.RowDefinitions>
+
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <!--main background-->
+            <Border x:Name="Borderform"  Grid.RowSpan="4" CornerRadius="90,0,90,0" Grid.ColumnSpan="8" 
+                    MouseDown="Borderform_MouseDown" Opacity="0.98" Background="{StaticResource gradient}" >
+                <!--border outer-->
+                <Border  Grid.RowSpan="2" CornerRadius="80,0,80,0" Grid.ColumnSpan="6"
+                     BorderBrush="#FFEAEAEA" BorderThickness="1.5" Width="270"
+                     Height="320">
+
+                </Border>
+            </Border>
+
+            <!--image main icon-->
+            <StackPanel Grid.Column="1" Grid.ColumnSpan="5"
+                       Grid.Row="0" Grid.RowSpan="1" VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
+                        Opacity="0.85">
+
+                <iconPacks:PackIconBoxIcons Kind="RegularMoon" Width="65" Height="65"/>
+            </StackPanel>
+
+
+
+            <!--import box-->
+            <StackPanel VerticalAlignment="Bottom" Grid.Column="2" Grid.ColumnSpan="4">
+                <TextBlock Text="Image Resizer" FontSize="23" FontWeight="Light" FontFamily="Helvetica"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="7" Grid.Column="0" VerticalAlignment="center"
+                       GotFocus="StackPanel_GotFocus" MouseDown="textblk_MouseDown" >
+                <Border CornerRadius="15" BorderBrush="#FFEAEAEA" BorderThickness="1.5"
+                        Width="200" Height="30" >
+                    <TextBox x:Name="importtxt" BorderBrush="#FFEAEAEA" BorderThickness="0" 
+                        VerticalAlignment="center" HorizontalAlignment="center"  Background="Transparent"
+                        FontWeight="Light" CaretBrush="#FFEAEAEA" Width="120"
+                        Foreground="White" FontSize="15" KeyDown="Importtxt_KeyDown" 
+                             LostFocus="Importtxt_LostFocus" MouseDoubleClick="Importtxt_MouseDoubleClick">
+
+                    </TextBox>
+                </Border>
+                <TextBlock x:Name="imptxt" FontSize="12" FontStyle="Italic"
+                           Text="Select Image location..." Margin="95,-22,45,0" MouseDown="textblk_MouseDown"/>
+                <iconPacks:PackIconBoxIcons Kind="RegularFolder" Width="13" Height="13" Margin="220,-22,00,00"/>
+
+            </StackPanel>
+
+
+
+            <!--Export box-->
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="7" Grid.Column="0" VerticalAlignment="Bottom"
+                        MouseDown="textblk2_MouseDown" >
+                <Border CornerRadius="15" BorderBrush="#FFEAEAEA" BorderThickness="1.5"
+                        Width="200" Height="27" >
+                    <TextBox x:Name="exporttxt" BorderBrush="#FFEAEAEA" BorderThickness="0" 
+                        VerticalAlignment="center" HorizontalAlignment="center"  Background="Transparent"
+                        FontWeight="Light" CaretBrush="#FFEAEAEA" MaxLength="5"
+                        Foreground="White" FontSize="15" PreviewTextInput="NumberValidationTextBox" LostFocus="Exporttxt_LostFocus" KeyDown="Exporttxt_KeyDown">
+                    </TextBox>
+                </Border>
+                <TextBlock x:Name="exptxt" FontSize="12" FontStyle="Italic"
+                           TextWrapping="WrapWithOverflow"
+                           Text="Resize value in pixels..." Margin="95,-22,85,0" >
+                </TextBlock>
+                <iconPacks:PackIconBoxIcons Kind="RegularDice3" Width="13" Height="13" Margin="220,-22,00,00"/>
+
+            </StackPanel>
+
+
+            <!--resize button-->
+            <StackPanel Grid.Column="0" Grid.Row="3" Margin="50,-15,50,50" 
+                        PreviewMouseDown="Resize_PreviewMouseDown"
+                        HorizontalAlignment="center" VerticalAlignment="center"
+                        Grid.ColumnSpan="7" PreviewKeyDown="StackPanel_PreviewKeyDown">
+                <Button Width="120" Height="26" Content="Resize" BorderThickness="0" />
+            </StackPanel>
+
+
+
+            <!--close button-->
+            <StackPanel x:Name="Close" Grid.Column="5" Grid.Row="0" Margin="20,20,0,0" 
+                        HorizontalAlignment="center" VerticalAlignment="Top"
+                        Background="Transparent"  PreviewMouseDown="Close_PreviewMouseDown"
+                      Grid.ColumnSpan="7" PreviewKeyDown="Close_PreviewKeyDown"  >
+
+                <Border Background="Transparent">
+                    <Button Width="23" Height="23" BorderThickness="2">
+                        <iconPacks:PackIconBoxIcons Kind="RegularX" Width="10" Height="10"/>
+
+                    </Button>
+                </Border>
+
+            </StackPanel>
+
+
+
+
+
+
+        </Grid>
+
+    </Grid>
+</Window>
