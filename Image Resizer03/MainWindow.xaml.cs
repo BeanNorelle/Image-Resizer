@@ -1,17 +1,9 @@
-﻿
-using System;
+﻿using System;
 using System.Windows;
-
 using System.Drawing;
-
 using System.IO;
-
 using System.Text.RegularExpressions;
-
 using System.Windows.Input;
-
-
-
 
 namespace Image_Resizer03
 {
@@ -53,8 +45,6 @@ namespace Image_Resizer03
         #region event handler got focus for import and export text boxees
         private void StackPanel_GotFocus(object sender, RoutedEventArgs e)
         {
-
-
             imptxt.Visibility = Visibility.Hidden;
 
             if (String.IsNullOrEmpty(importtxt.Text))
@@ -63,7 +53,6 @@ namespace Image_Resizer03
 
                 System.Windows.Forms.FolderBrowserDialog fbd = new System.Windows.Forms.FolderBrowserDialog();
                 //fbd.Description = "Custom Description"; //not mandatory
-
                 if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     sSelectedFolder = fbd.SelectedPath;
                 else
@@ -80,18 +69,13 @@ namespace Image_Resizer03
 
         private void textblk_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
             imptxt.Visibility = Visibility.Hidden;
             importtxt.Focus();
-
-
         }
         private void textblk2_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
             exptxt.Visibility = Visibility.Hidden;
             exporttxt.Focus();
-
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -104,15 +88,12 @@ namespace Image_Resizer03
         {
 
             imptxt.Visibility = Visibility.Hidden;
-
-
         }
         private void Importtxt_LostFocus(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrEmpty(importtxt.Text))
             {
                 imptxt.Visibility = Visibility.Visible;
-
             }
         }
 
@@ -121,17 +102,12 @@ namespace Image_Resizer03
             if (String.IsNullOrEmpty(exporttxt.Text))
             {
                 exptxt.Visibility = Visibility.Visible;
-
             }
         }
 
         private void Exporttxt_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-
-
             exptxt.Visibility = Visibility.Hidden;
-
-
         }
         #endregion
 
@@ -194,9 +170,7 @@ namespace Image_Resizer03
                 {
 
                 }
-            }
-         
-           
+            }    
         }
 
         private void StackPanel_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -209,11 +183,9 @@ namespace Image_Resizer03
         #endregion
 
 
-        #region resize button event
+        #region reszie function
         private void Resizee()
-        {
-
-         
+        {  
                     DirectoryInfo directory = new DirectoryInfo(importtxt.Text);
                     string[] filePaths = Directory.GetFiles(importtxt.Text);
                     if (filePaths.Length > 0)
@@ -221,16 +193,13 @@ namespace Image_Resizer03
                         FileInfo[] files = directory.GetFiles();
                         ResizeImages(files);
                         MessageBox.Show("Done!");
-                    }
-    
+                    } 
         }
         #endregion
 
         #region resize method
         private void ResizeImages(FileInfo[] files)
         {
-
-
             int h = Convert.ToInt32(exporttxt.Text);
             int w = h;
 
@@ -245,7 +214,6 @@ namespace Image_Resizer03
 
                         img.Dispose();
                         newImage.Dispose();
-
                 }
         }
         #endregion
