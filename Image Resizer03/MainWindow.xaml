@@ -55,12 +55,12 @@
 
 
             <!--main background-->
-            <Border x:Name="Borderform"  Grid.RowSpan="4" CornerRadius="90,0,90,0" Grid.ColumnSpan="8" 
+            <Border x:Name="Borderform"  Grid.RowSpan="4" CornerRadius="20" Grid.ColumnSpan="8" 
                     MouseDown="Borderform_MouseDown" Opacity="0.98" Background="{StaticResource gradient}" >
                 <!--border outer-->
-                <Border  Grid.RowSpan="2" CornerRadius="80,0,80,0" Grid.ColumnSpan="6"
-                     BorderBrush="#FFEAEAEA" BorderThickness="1.5" Width="270"
-                     Height="320">
+                <Border  Grid.RowSpan="2" CornerRadius="20" Grid.ColumnSpan="6"
+                     BorderBrush="#FFEAEAEA" BorderThickness="1.5" Width="280"
+                     Height="330">
 
                 </Border>
             </Border>
@@ -145,13 +145,6 @@
                 </Border>
 
             </StackPanel>
-
-
-
-
-
-
         </Grid>
-
     </Grid>
 </Window>
